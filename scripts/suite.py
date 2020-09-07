@@ -96,9 +96,15 @@ Standard arguments:
                               of resources, however --non-interactive option
                               can be used to skip user input.
                               [default: 0]
+  --arch <arch>               Override architecture defaults, for example,
+                              aarch64, armv7l, x86_64. Normally this
+                              argument should not be provided and the arch
+                              is determined from --machine-type.
 
 Scheduler arguments:
   --owner <owner>             Job owner
+  -b <backend>, --queue-backend <backend>
+                              Scheduler queue backend name
   -e <email>, --email <email>
                               When tests finish or time out, send an email
                               here. May also be specified in ~/.teuthology.yaml
@@ -162,6 +168,7 @@ Scheduler arguments:
                               with --rerun argument. This number can be found
                               in the output of teuthology-suite command. -1
                               for a random seed [default: -1].
+ --force-priority             Skip the priority check.
 
 """.format(
     default_machine_type=config.default_machine_type,
