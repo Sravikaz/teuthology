@@ -13,10 +13,19 @@ from teuthology.lock.ops import unlock_one
 from teuthology.lock.query import is_vm, list_locks, \
     find_stale_locks, get_status
 from teuthology.lock.util import locked_since_seconds
+'''
 from teuthology.nuke.actions import (
     check_console, clear_firewall, shutdown_daemons, remove_installed_packages,
     reboot, remove_osd_mounts, remove_osd_tmpfs, kill_hadoop,
     remove_ceph_packages, synch_clocks, unlock_firmware_repo,
+    remove_configuration_files, undo_multipath, reset_syslog_dir,
+    remove_ceph_data, remove_testing_tree, remove_yum_timedhosts,
+    kill_valgrind,
+)'''
+from teuthology.nuke.actions import (
+    check_console, clear_firewall, shutdown_daemons, remove_installed_packages,
+    reboot, remove_osd_mounts, remove_osd_tmpfs, kill_hadoop,
+    remove_ceph_packages, unlock_firmware_repo,
     remove_configuration_files, undo_multipath, reset_syslog_dir,
     remove_ceph_data, remove_testing_tree, remove_yum_timedhosts,
     kill_valgrind,
@@ -346,7 +355,7 @@ def nuke_helper(ctx, should_unlock):
     remove_osd_tmpfs(ctx)
     kill_hadoop(ctx)
     remove_ceph_packages(ctx)
-    synch_clocks(remotes)
+    #synch_clocks(remotes)
     unlock_firmware_repo(ctx)
     remove_configuration_files(ctx)
     undo_multipath(ctx)

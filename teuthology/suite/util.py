@@ -127,7 +127,8 @@ def get_distro_defaults(distro, machine_type):
         ('x86_64', 'fedora20', 'rpm') when passed 'fedora'
     And ('x86_64', 'centos7', 'rpm') when passed anything else
     """
-    arch = 'x86_64'
+    #arch = 'x86_64'
+    arch = 's390x'
     if distro in (None, 'None'):
         os_type = 'centos'
         os_version = '7'

@@ -812,7 +812,7 @@ def get_scratch_devices(remote):
         devs = file_data.split()
     except Exception:
         devs = remote.sh('ls /dev/[sv]d?').strip().split('\n')
-
+    
     # Remove root device (vm guests) from the disk list
     for dev in devs:
         if 'vda' in dev:
