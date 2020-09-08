@@ -893,8 +893,8 @@ def install_kernel(remote, path=None, version=None):
             #teuthology.delete_file(remote, '/etc/grub.d/01_ceph_kernel', sudo=True, force=True)
             #teuthology.sudo_write_file(remote, '/etc/grub.d/01_ceph_kernel', StringIO(grubfile), '755')
             log.info('Distro Kernel Version: {version}'.format(version=newversion))
-            remote.run(args=['sudo', 'update-grub'])
-            remote.run(args=['sudo', 'shutdown', '-r', 'now'], wait=False )
+            #remote.run(args=['sudo', 'update-grub'])
+            #remote.run(args=['sudo', 'shutdown', '-r', 'now'], wait=False )
             return
 
         if 'debian' in dist_release:
