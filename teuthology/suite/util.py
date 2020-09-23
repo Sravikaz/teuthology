@@ -130,16 +130,17 @@ def get_distro_defaults(distro, machine_type):
     #arch = 'x86_64'
     arch = 's390x'
     if distro in (None, 'None'):
-        os_type = 'centos'
-        os_version = '7'
-    elif distro in ('rhel', 'centos'):
-        os_type = 'centos'
-        os_version = '7'
+        os_type = 'ubuntu'
+        os_version = '20.04'
+        machine_type == 'm1306'
+    #elif distro in ('rhel', 'centos'):
+        #os_type = 'centos'
+        #os_version = '7'
     elif distro == 'ubuntu':
         os_type = distro
-        if machine_type == 'saya':
-            os_version = '13.10'
-            arch = 'armv7l'
+        if machine_type == 'm1306':
+            os_version = '20.04'
+            arch = 's390x'
         else:
             os_version = '16.04'
     elif distro == 'debian':
@@ -251,7 +252,7 @@ def get_branch_info(project, branch, project_owner='ceph'):
     if resp.ok:
         return resp.json()
 
-
+'''
 def package_version_for_hash(hash, kernel_flavor='basic', distro='rhel',
                              distro_version='8.0', machine_type='smithi'):
     """
@@ -260,6 +261,29 @@ def package_version_for_hash(hash, kernel_flavor='basic', distro='rhel',
     :returns: a string.
     """
     (arch, release, _os) = get_distro_defaults(distro, machine_type)
+    if distro in (None, 'None'):
+        distro = _os.name
+    bp = get_builder_project()(
+        'ceph',
+        dict(
+            flavor=kernel_flavor,
+            os_type=distro,
+            os_version=distro_version,
+            arch=arch,
+            sha1=hash,
+        ),
+    )
+    return bp.version
+'''
+
+def package_version_for_hash(hash, kernel_flavor='basic', distro='ubuntu',
+                             distro_version='20.04', machine_type='m1306'):
+    """
+    Does what it says on the tin. Uses gitbuilder repos.
+
+    :returns: a string.
+    """
+    (arch, release, _os) = get_distro_defaults('ubuntu', 'm1306')
     if distro in (None, 'None'):
         distro = _os.name
     bp = get_builder_project()(

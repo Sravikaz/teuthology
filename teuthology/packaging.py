@@ -885,7 +885,8 @@ class ShamanProject(GitbuilderProject):
         req_obj = OrderedDict()
         req_obj['status'] = 'ready'
         req_obj['project'] = self.project
-        req_obj['flavor'] = flavor
+        #req_obj['flavor'] = flavor
+        req_obj['flavor'] = 'default'
         req_obj['distros'] = '%s/%s' % (self.distro, self.arch)
         ref_name, ref_val = list(self._choose_reference().items())[0]
         if ref_name == 'tag':
